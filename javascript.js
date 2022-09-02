@@ -10,19 +10,19 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-   do {
+    do {
         let sign = prompt("Choose rock, paper, or scissors")
         sign = sign.toLowerCase()
         if (sign == "rock" || sign == "paper" || sign == "scissors") {
             return sign
-            
+
         }
-  } while (true)
+    } while (true)
 }
 
 function rockPaperScissors(computer, player) {
     if (computer == player) {
-        return "draw"
+        return ("Draw, both players used "+computer+".")
     } else if (computer == "rock" & player == "paper") {
         return "You win, paper covers rock."
     } else if (computer == "rock" & player == "scissors") {
