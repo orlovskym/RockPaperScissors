@@ -1,13 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+
+
+    <div class="buttons">
+        <button onclick="passToGame('rock')">Rock</button>
+        <button onclick="passToGame('paper')">Paper</button>
+        <button onclick="passToGame('scissors')">Scissors</button>
+    </div>
+
+    <div class="results">
+        <div class="textResult"></div>
+        <div class="score">
+            <div class="playerScore">0</div>
+            <div>-</div>
+            <div class="computerScore">0</div>
+        </div>
+    </div>
+
     <script src="javascript.js"></script>
 
+
 </body>
+
 </html>

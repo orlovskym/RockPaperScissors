@@ -1,3 +1,15 @@
+let playerScore=0;
+let computerScore=0;
+let draws=0;
+let gameActive=true;
+let textResult=document.querySelector(`.textResult`)
+
+function passToGame(player){
+    if (gameActive){
+    rockPaperScissors(getComputerChoice(),player);
+    } else return;
+}
+
 function getComputerChoice() {
     let sign = Math.floor(Math.random() * 3)
     if (sign == 0) {
@@ -9,48 +21,52 @@ function getComputerChoice() {
     }
 }
 
-function getPlayerChoice() {
-    do {
-        let sign = prompt("Choose rock, paper, or scissors")
-        sign = sign.toLowerCase()
-        if (sign == "rock" || sign == "paper" || sign == "scissors") {
-            return sign
-
-        }
-    } while (true)
-}
-
 function rockPaperScissors(computer, player) {
     if (computer == player) {
-        console.log("Draw, both players used " + computer + ".")
-        return 0
+        textResult.textContent=`Draw, both players used ${computer}.`
+        draws+=1;
     } else if (computer == "rock" & player == "paper") {
-        console.log("You win, paper covers rock.")
-        return 1
+        textResult.textContent="You win, paper covers rock."
+        playerScore+=1;
     } else if (computer == "rock" & player == "scissors") {
-        console.log("You lose, rock smashes scissors.")
-        return 2
+        textResult.textContent="You lose, rock smashes scissors."
+        computerScore+=1;
     } else if (computer == "paper" & player == "rock") {
-        console.log("You lose, paper covers rock.")
-        return 2
+        textResult.textContent="You lose, paper covers rock."
+        computerScore+=1;
     } else if (computer == "paper" & player == "scissors") {
-        console.log("You win, scissors cuts paper.")
-        return 1
+        textResult.textContent="You win, scissors cuts paper."
+        playerScore+=1;
     } else if (computer == "scissors" & player == "paper") {
-        console.log("You lose, scissors cuts paper.")
-        return 2
+        textResult.textContent="You lose, scissors cuts paper."
+        computerScore+=1;
     } else if (computer == "scissors" & player == "rock") {
-        console.log("You win, rock smashes scissors.")
-        return 1
+        textResult.textContent="You win, rock smashes scissors."
+        playerScore+=1;
     }
+    updateScore();
 }
+
+function updateScore(){
+document.querySelector(`.playerScore`).textContent=playerScore;
+document.querySelector(`.computerScore`).textContent=computerScore;
+if (playerScore == 5){
+    document.querySelector(`.textResult`).textContent="You won the best-of-5!";
+    gameActive=false;
+}else if (computerScore == 5){
+    document.querySelector(`.textResult`).textContent="You lost the best-of-5.";
+    gameActive=false;
+}
+
+}
+
 
 function game() {
     let draws = 0
     let playerwins = 0
     let computerwins = 0
 
-    for (let i = 0; i < 5; i++) {
+    for (let j = 0; j < 5; j++) {
         let result = rockPaperScissors(getComputerChoice(), getPlayerChoice())
         if (result == 0) {
             draws++
@@ -64,4 +80,5 @@ function game() {
     console.log("In 5 rounds you got " + draws + " draws, " + playerwins + " wins, and " + computerwins + " losses.")
 }
 
-game()
+
+
